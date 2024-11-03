@@ -8,7 +8,7 @@ BSTNode<T>:: BSTNode(void)
 {};
 
 template <class T>
-BSTNode<T>:: List(const BSTNode<T> &BSTNode)
+BSTNode<T>:: BSTNode(const BSTNode<T> &BSTNode)
 {};
 
 template <class T>
