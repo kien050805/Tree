@@ -10,8 +10,8 @@ using namespace std;
 
 #include "BSTNode.hpp"
 
-#ifndef BST
-#define BST
+#ifndef BST_HPP
+#define BST_HPP
 
 template <class T> 
 class BST
