@@ -7,6 +7,7 @@
 #include "RBTreeNode.cpp"
 #include "RBTree.hpp"
 #include "RBTree.cpp"
+#include "string"
 
 /*===========================================================================
 BSTNode_sanity_check()
@@ -34,25 +35,58 @@ Return: boolean value depending on if the function pass the test cases
 bool BST_sanity_check()
 {
     bool check = true;
-    // Create a BST
-    BST<long> tree;
+    // Create BSTs
+    BST<int> tree_0;
+    BST<string> tree_1;
+    BST<double> tree_2;
+    BST<int> tree_3;
 
     // Test isEmpty on an empty tree
-    if (!tree.isEmpty()){
+    if (!tree_0.isEmpty()){
         check = false;
     };
 
-    // Test insert
-    tree.insert(10);
-    tree.insert(5);
-    tree.insert(15);
-    tree.insert(3);
-    tree.insert(7);
-    tree.insert(12);
-    tree.insert(18);
+    // Test insert int
+    tree_0.insert(10);
+    tree_0.insert(-5);
+    tree_0.insert(15);
+    tree_0.insert(7);
+    tree_0.insert(-12);
 
-    // Test size
-    if (tree.size() != 7){
+    if (tree_0.size() != 5){
+        check = false;
+    };
+
+    // Test insert string
+    tree_1.insert("b");
+    tree_1.insert("f");
+    tree_1.insert("d");
+    tree_1.insert(".");
+    tree_1.insert(",");
+
+    if (tree_1.size() != 5){
+        check = false;
+    };
+
+    // Test insert double
+    tree_2.insert(1.21);
+    tree_2.insert(2.1);
+    tree_2.insert(12.3);
+    tree_2.insert(0.55);
+    tree_2.insert(1.7);
+
+    if (tree_2.size() != 5){
+        check = false;
+    };
+
+    // Test insert same values
+    tree_3.insert(0);
+    tree_3.insert(0);
+    tree_3.insert(0);
+    tree_3.insert(0);
+    tree_3.insert(0);
+
+    if (tree_3.size() != 5){
         check = false;
     };
 
