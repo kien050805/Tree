@@ -18,15 +18,8 @@ class BST
 {
 	private:
 		// struct for Node for Binary Search Tree
-		struct Node
-		{
-			T		key;
-            Node    *p;
-			Node 	*left;
-            Node    *right;
-		};
-		Node		*root;
-		long		size;	
+		BSTNode		*root;
+		long		bst_size;	
 
 	public:
 					BST		                    ( void );
