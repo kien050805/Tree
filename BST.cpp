@@ -76,8 +76,36 @@ long            BST<T>::size        ()      const{
 };
 
 template <class T>
-BSTNode<T>*     BST<T>::insert      (T value){
-
+BSTNode<T> *BST<T>::insert(T value)
+{
+    BSTNode<T> z(value);
+    BSTNode<T> x = root;
+    BSTNode<T> y = NULL;
+    while (x != NULL)
+    {
+        y = x;
+        if (z.key < x.key)
+        {
+            x = x.left;
+        }
+        else
+        {
+            x = x.right;
+        };
+    };
+    z.p = y;
+    if (y == NULL)
+    {
+        root = z;
+    }
+    else if (z.key < y.key)
+    {
+        y.left = z;
+    }
+    else
+    {
+        y.right = z;
+    };
 };
 
 template <class T>
