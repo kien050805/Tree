@@ -31,9 +31,26 @@ BST<T>          BST<T>::operator=   (const BST<T> &tree){
 
 };
 
+/*===========================================================================
+transplant function
+Replaces one subtree as a child of its parent with another subtree
+Parameters: Pointer to current subtree, pointer to new subtree
+Return: None
+===========================================================================*/
 template <class T>
 void            BST<T>::transplant  (BSTNode<T> *oldNode, BSTNode<T> *newNode){
-
+    if oldNode.p == NULL {
+        root = newNode;
+    }
+    elseif oldNode == oldNode.p.left {
+        oldNode.p.left = newNode;
+    }
+    else {
+        oldNode.p.right = newNode;
+    }
+    if newNode != NULL {
+        newNode.p = oldNode.p;
+    }
 };
 
 /*===========================================================================
@@ -86,8 +103,8 @@ BSTNode<T>*     BST<T>::treeMin     ()          const{
     }
     else {
         BSTNode<T>* x = root;
-        while x->left != NULL{
-            x = x->left;
+        while x.left != NULL{
+            x = x.left;
         }
         return x;
     }
@@ -106,8 +123,8 @@ BSTNode<T>*     BST<T>::treeMax     ()          const{
     }
     else {
         BSTNode<T>* x = root;
-        while x->right != NULL{
-            x = x->right;
+        while x.right != NULL{
+            x = x.right;
         }
         return x;
     }
