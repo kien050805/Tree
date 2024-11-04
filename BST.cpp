@@ -53,6 +53,12 @@ BSTNode<T>*     BST<T>::search      (T value)   const{
 
 };
 
+/*===========================================================================
+treeMin function
+Find the smallest value of the binary search tree
+Parameters: None
+Return: The smallest value of the binary search tree
+===========================================================================*/
 template <class T>
 BSTNode<T>*     BST<T>::treeMin     ()          const{
     x = root;
@@ -62,6 +68,12 @@ BSTNode<T>*     BST<T>::treeMin     ()          const{
     return x;
 };
 
+/*===========================================================================
+treeMax function
+Find the largest value of the binary search tree
+Parameters: None
+Return: The largest value of the binary search tree
+===========================================================================*/
 template <class T>
 BSTNode<T>*     BST<T>::treeMax     ()          const{
     x = root;
