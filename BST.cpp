@@ -1,11 +1,13 @@
 #include <iostream>
 #include "BST.hpp"
+#include "customexceptions.hpp"
 
 using namespace std;
 
 template <class T>
 BST<T>::        BST(void){
-
+    root = NULL;
+    size = 0;
 };
 
 template <class T>
@@ -19,7 +21,7 @@ BST<T>::        ~BST(void){
 };
 
 template <class T>
-BST<T>          BST<T>::operator=   (const BST<T>){
+BST<T>          BST<T>::operator=   (const BST<T> &tree){
 
 };
 
@@ -36,10 +38,7 @@ Return: True if the tree is empty, false if isn't
 ===========================================================================*/
 template <class T>
 bool            BST<T>::isEmpty     ()      const{
-    if root == NULL{
-        return true;
-    }
-    return false;
+    return (size == 0);
 };
 
 template <class T>
@@ -64,33 +63,42 @@ BSTNode<T>*     BST<T>::search      (T value)   const{
 
 /*===========================================================================
 treeMin function
-Find the smallest value of the binary search tree
+Find the pointer of the smallest value of the binary search tree
 Parameters: None
-Return: The smallest value of the binary search tree
+Return: The pointer of the smallest value of the binary search tree
 ===========================================================================*/
 template <class T>
 BSTNode<T>*     BST<T>::treeMin     ()          const{
-    x = root;
-
-    while x.left != NULL{
-        x = x.left;
+    if isEmpty(){
+        throw empty_tree_exception();
     }
-    return x;
+    else {
+        BSTNode<T>* x = root;
+        while x->left != NULL{
+            x = x->left;
+        }
+        return x;
+    }
 };
 
 /*===========================================================================
 treeMax function
-Find the largest value of the binary search tree
+Find the pointer of the largest value of the binary search tree
 Parameters: None
-Return: The largest value of the binary search tree
+Return: The pointer of largest value of the binary search tree
 ===========================================================================*/
 template <class T>
 BSTNode<T>*     BST<T>::treeMax     ()          const{
-    x = root;
-    while x.right != NULL{
-        x = x.right;
+    if isEmpty(){
+        throw empty_tree_exception();
     }
-    return x;
+    else {
+        BSTNode<T>* x = root;
+        while x->right != NULL{
+            x = x->right;
+        }
+        return x;
+    }
 };
 
 template <class T>
