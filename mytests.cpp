@@ -18,7 +18,8 @@ Return: boolean value depending on if the function pass the test cases
 bool BSTNode_sanity_check()
 {
     bool check = true;
-    
+
+
     
     return check;
 };
@@ -33,8 +34,28 @@ Return: boolean value depending on if the function pass the test cases
 bool BST_sanity_check()
 {
     bool check = true;
+    // Create a BST
+    BST<long> tree;
 
-    
+    // Test isEmpty on an empty tree
+    if (!tree.isEmpty()){
+        check = false;
+    };
+
+    // Test insert
+    tree.insert(10);
+    tree.insert(5);
+    tree.insert(15);
+    tree.insert(3);
+    tree.insert(7);
+    tree.insert(12);
+    tree.insert(18);
+
+    // Test size
+    if (tree.size() != 7){
+        check = false;
+    };
+
     return check;
 };
 
