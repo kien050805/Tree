@@ -34,6 +34,13 @@ BSTNode<T> *BSTNode<T>::operator=(const BSTNode<T> &node)
 };
 
 template <class T>
+T BSTNode<T>::value() const
+{
+    return key;
+};
+
+
+template <class T>
 BSTNode<T> *BSTNode<T>::treeMin() const
 {
     if (left == NULL)
