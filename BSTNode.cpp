@@ -26,3 +26,18 @@ BSTNode<T>* BSTNode<T>:: treeMin() const
 template <class T>
 BSTNode<T>*  BSTNode<T>:: treeMax() const
 {};
+
+template <class T>
+void            BSTNode<T>::printPreOrderTraversal()          const{
+
+};
+
+template <class T>
+void            BSTNode<T>::printInOrderTraversal()          const{
+
+};
+
+template <class T>
+void            BSTNode<T>::printPostOrderTraversal()          const{
+
+};
