@@ -33,11 +33,11 @@ void            BSTNode<T>::printPreOrderTraversal()          const{
 };
 
 template <class T>
-void            BSTNode<T>::printInOrderTraversal()          const{
+void            BSTNode<T>::printInOrderTraversal()           const{
 
 };
 
 template <class T>
-void            BSTNode<T>::printPostOrderTraversal()          const{
+void            BSTNode<T>::printPostOrderTraversal()         const{
 
 };

@@ -55,12 +55,20 @@ BSTNode<T>*     BST<T>::search      (T value)   const{
 
 template <class T>
 BSTNode<T>*     BST<T>::treeMin     ()          const{
-
+    x = root;
+    while x.left != NULL{
+        x = x.left;
+    }
+    return x;
 };
 
 template <class T>
 BSTNode<T>*     BST<T>::treeMax     ()          const{
-
+    x = root;
+    while x.right != NULL{
+        x = x.right;
+    }
+    return x;
 };
 
 template <class T>
