@@ -6,46 +6,56 @@ using namespace std;
 template <class T>
 BSTNode<T>::BSTNode(T key)
 {
-    *this = new Node;
-    this.key = key;
-    this.p = NULL;
-    this.left = NULL;
-    this.right = NULL;
+    key = key;
+    left = NULL;
+    right = NULL;
+    p = NULL;
 };
 
 template <class T>
-BSTNode<T>::BSTNode(const BSTNode<T> &BSTNode){};
+BSTNode<T>::BSTNode(const BSTNode<T> &node)
+{
+    key = node.key;
+    left = node.left;
+    right = node.right;
+    p = node.p;
+};
 
 template <class T>
-BSTNode<T>::~BSTNode(void){
-    delete this};
+BSTNode<T>::~BSTNode(void) {};
 
 template <class T>
-BSTNode<T>::operator=(const BSTNode<T>){};
+BSTNode<T> *BSTNode<T>::operator=(const BSTNode<T> &node)
+{
+    key = node.key;
+    left = node.left;
+    right = node.right;
+    p = node.p;
+};
 
 template <class T>
 BSTNode<T> *BSTNode<T>::treeMin() const
 {
-    if (this.left == NULL)
+    if (left == NULL)
     {
         return *this;
     };
     else
     {
-        return this.left;
+        return left.treeMin();
     }
 };
 
 template <class T>
 BSTNode<T> *BSTNode<T>::treeMax() const
 {
-    if (this.right == NULL)
+    if (right == NULL)
     {
         return *this;
     };
     else
     {
-        return this.right;
+        return right.treeMax();
     }
 };
 
@@ -54,9 +64,9 @@ void BSTNode<T>::printPreOrderTraversal() const
 {
     if (this != NULL)
     {
-        cout << this.key;
-        printInOrderTraversal(this.left);
-        printInOrderTraversal(this.right);
+        cout << key;
+        printInOrderTraversal(left);
+        printInOrderTraversal(right);
     };
 };
 
@@ -65,9 +75,9 @@ void BSTNode<T>::printInOrderTraversal() const
 {
     if (this != NULL)
     {
-        printInOrderTraversal(this.left);
-        cout << this.key;
-        printInOrderTraversal(this.right);
+        printInOrderTraversal(left);
+        cout << key;
+        printInOrderTraversal(right);
     };
 };
 
@@ -76,8 +86,8 @@ void BSTNode<T>::printPostOrderTraversal() const
 {
     if (this != NULL)
     {
-        printInOrderTraversal(this.left);
-        printInOrderTraversal(this.right);
-        cout << this.key;
+        printInOrderTraversal(left);
+        printInOrderTraversal(right);
+        cout << key;
     };
 };

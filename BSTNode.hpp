@@ -17,27 +17,23 @@ template <class T>
 class BSTNode
 {
     private:
-        struct Node
-        {
-            T key;
-            Node *P;
-            Node *left;
-            Node *right;
-        };
-        Node *this;
-        void copy(const BSTNode<T> &node);
-
+        T key;
+        BSTNode *p;
+        BSTNode *left;
+        BSTNode *right;
 
     public:
-                        BSTNode                 (T key);
+                        BSTNode                 (T item);
                         BSTNode                 (const BSTNode<T> &node);
                         ~BSTNode                (void);
-        BSTNode<T>*     treeMin                 ();
-        BSTNode<T>*     treeMax                 ();
+        BSTNode<T>*		operator=	            (const BSTNode<T> &node);
+
+        BSTNode<T>*     treeMin                 () const;
+        BSTNode<T>*     treeMax                 () const;
         void            printPreOrderTraversal  () const;
         void            printInOrderTraversal   () const;
         void            printPostOrderTraversal () const;
-        BSTNode<T>*		operator=	            (const BSTNode<T> &node);
+
 };
 
 #include "BSTNode.cpp"
