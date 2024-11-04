@@ -115,21 +115,33 @@ BSTNode<T>*     BST<T>::treeMax     ()          const{
 
 /*===========================================================================
 printPreOrderTraversal function
-Find the pointer of the largest value of the binary search tree
+Prints the tree in pre-order traversal
 Parameters: None
-Return: The pointer of largest value of the binary search tree
+Return: None
 ===========================================================================*/
 template <class T>
 void            BST<T>::printPreOrderTraversal()          const{
-
+    root.printPreOrderTraversal();
 };
 
+/*===========================================================================
+printInOrderTraversal function
+Prints the tree in in-order traversal
+Parameters: None
+Return: None
+===========================================================================*/
 template <class T>
 void            BST<T>::printInOrderTraversal()          const{
-
+    root.printInOrderTraversal();
 };
 
+/*===========================================================================
+printPostOrderTraversal function
+Prints the tree in post-order traversal
+Parameters: None
+Return: None
+===========================================================================*/
 template <class T>
 void            BST<T>::printPostOrderTraversal()          const{
-
+    root.printPostOrderTraversal();
 };
