@@ -24,7 +24,7 @@ class BSTNode
             Node *left;
             Node *right;
         };
-        Node* root;
+        Node *root;
         void copy(const BSTNode<T> &node);
 
 

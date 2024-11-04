@@ -25,7 +25,7 @@ class BST
 			Node 	*left;
             Node    *right;
 		};
-		
+		Node		*root;
 		long		size;	
 
 	public:
