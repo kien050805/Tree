@@ -4,6 +4,12 @@
 
 using namespace std;
 
+/*===========================================================================
+Default constructor
+Creates a new binary search tree with type T
+Parameters: None
+Return: None
+===========================================================================*/
 template <class T>
 BST<T>::        BST(void){
     root = NULL;
@@ -38,12 +44,18 @@ Return: True if the tree is empty, false if isn't
 ===========================================================================*/
 template <class T>
 bool            BST<T>::isEmpty     ()      const{
-    return (size == 0);
+    return (bst_size == 0);
 };
 
+/*===========================================================================
+size function
+Returns the size of the binary search tree
+Parameters: None
+Return: The size of the binary search tree
+===========================================================================*/
 template <class T>
 long            BST<T>::size        ()      const{
-
+    return bst_size;
 };
 
 template <class T>
@@ -101,6 +113,12 @@ BSTNode<T>*     BST<T>::treeMax     ()          const{
     }
 };
 
+/*===========================================================================
+printPreOrderTraversal function
+Find the pointer of the largest value of the binary search tree
+Parameters: None
+Return: The pointer of largest value of the binary search tree
+===========================================================================*/
 template <class T>
 void            BST<T>::printPreOrderTraversal()          const{
 
