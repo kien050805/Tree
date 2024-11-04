@@ -5,6 +5,13 @@ using namespace std;
 #ifndef CUSTOMEXCEPTIONS_HPP
 #define CUSTOMEXCEPTIONS_HPP
 
+class value_not_in_tree_exception : public std::exception {
+public:
+    const char* what() const noexcept override {
+        return "Error: The specified value is not in the tree.";
+    }
+};
+
 class empty_tree_exception : public std::exception {
 public:
     // Override the what() function to provide an error message

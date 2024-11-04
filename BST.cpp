@@ -39,16 +39,16 @@ Return: None
 ===========================================================================*/
 template <class T>
 void            BST<T>::transplant  (BSTNode<T> *oldNode, BSTNode<T> *newNode){
-    if oldNode.p == NULL {
+    if (oldNode.p == NULL) {
         root = newNode;
     }
-    elseif oldNode == oldNode.p.left {
+    elseif (oldNode == oldNode.p.left) {
         oldNode.p.left = newNode;
     }
     else {
         oldNode.p.right = newNode;
     }
-    if newNode != NULL {
+    if (newNode != NULL) {
         newNode.p = oldNode.p;
     }
 };
@@ -112,19 +112,65 @@ BSTNode<T> *BST<T>::insert(T value)
     else
     {
         y.right = z;
-    };
-    
+    }
+
     bst_size++;
 };
 
+/*===========================================================================
+remove function
+Removes a node with value value from the tree.
+Parameters: The value to be removed
+Return: None
+===========================================================================*/
 template <class T>
 void            BST<T>::remove      (T value){
+    if (isEmpty()) {
+        throw empty_tree_exception();     
+    }
 
+    BSTNode<T>* check_node = search(value);
+    if (check_node == NULL){
+        throw value_not_in_tree_exception();
+    }
+
+    if value.left == NULL {
+        transplant(value, value.right);
+    }
+    else if value.right == NULL {
+        transplant(value, value.left);
+    }
+    else {
+        BSTNode<T>* y = value.right.treeMin();
+        if (y != value.right){
+            transplant(y, y.right);
+            y.right = value.right;
+            y.right.p = y;
+        }
+        transplant(value, y);
+        y.left = value.left;
+        y.left.p = y;
+    }
+
+    bst_size--;
 };
 
+/*===========================================================================
+search function
+Returns a pointer to a node with value value.
+Parameters: The value to be searched
+Return: The pointer of the value in the tree
+===========================================================================*/
 template <class T>
 BSTNode<T>*     BST<T>::search      (T value)   const{
-
+    BSTNode<T> x = root;
+    while (x != NULL && value != x.key){
+        if (value < x.key){
+            x = x.left;
+        }
+        else x = x.right;
+    }
+    return x;
 };
 
 /*===========================================================================
@@ -135,12 +181,12 @@ Return: The pointer of the smallest value of the binary search tree
 ===========================================================================*/
 template <class T>
 BSTNode<T>*     BST<T>::treeMin     ()          const{
-    if isEmpty(){
+    if (isEmpty()){
         throw empty_tree_exception();
     }
     else {
         BSTNode<T>* x = root;
-        while x.left != NULL{
+        while (x.left != NULL){
             x = x.left;
         }
         return x;
@@ -155,12 +201,12 @@ Return: The pointer of largest value of the binary search tree
 ===========================================================================*/
 template <class T>
 BSTNode<T>*     BST<T>::treeMax     ()          const{
-    if isEmpty(){
+    if (isEmpty()){
         throw empty_tree_exception();
     }
     else {
         BSTNode<T>* x = root;
-        while x.right != NULL{
+        while (x.right != NULL){
             x = x.right;
         }
         return x;
