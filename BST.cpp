@@ -75,6 +75,13 @@ long            BST<T>::size        ()      const{
     return bst_size;
 };
 
+/*===========================================================================
+insert function
+Inserts a node with value value into the tree and returns 
+a pointer to the inserted node.
+Parameters: The value to be inserted
+Return: The pointer to the inserted node
+===========================================================================*/
 template <class T>
 BSTNode<T> *BST<T>::insert(T value)
 {
@@ -106,6 +113,8 @@ BSTNode<T> *BST<T>::insert(T value)
     {
         y.right = z;
     };
+    
+    bst_size++;
 };
 
 template <class T>
