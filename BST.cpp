@@ -28,9 +28,18 @@ void            BST<T>::transplant  (BSTNode<T> *oldNode, BSTNode<T> *newNode){
 
 };
 
+/*===========================================================================
+isEmpty function
+Check if the tree is empty or not
+Parameters: None
+Return: True if the tree is empty, false if isn't
+===========================================================================*/
 template <class T>
 bool            BST<T>::isEmpty     ()      const{
-
+    if root == NULL{
+        return true;
+    }
+    return false;
 };
 
 template <class T>
@@ -62,6 +71,7 @@ Return: The smallest value of the binary search tree
 template <class T>
 BSTNode<T>*     BST<T>::treeMin     ()          const{
     x = root;
+
     while x.left != NULL{
         x = x.left;
     }
