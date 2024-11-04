@@ -24,12 +24,12 @@ class BSTNode
             Node *left;
             Node *right;
         };
-        Node *root;
+        Node *this;
         void copy(const BSTNode<T> &node);
 
 
     public:
-                        BSTNode                 (void);
+                        BSTNode                 (T key);
                         BSTNode                 (const BSTNode<T> &node);
                         ~BSTNode                (void);
         BSTNode<T>*     treeMin                 ();
