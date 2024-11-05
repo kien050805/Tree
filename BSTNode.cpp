@@ -38,7 +38,7 @@ BSTNode<T> *BSTNode<T>::treeMin() const
 {
     if (left == nullptr)
     {
-        return *this;
+        return this;
     }
     else
     {
@@ -51,7 +51,7 @@ BSTNode<T> *BSTNode<T>::treeMax() const
 {
     if (right == nullptr)
     {
-        return *this;
+        return this;
     }
     else
     {
