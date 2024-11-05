@@ -4,12 +4,12 @@
 using namespace std;
 
 template <class T>
-BSTNode<T>::BSTNode(T key)
+BSTNode<T>::BSTNode(T item)
 {
-    key = key;
-    left = NULL;
-    right = NULL;
-    p = NULL;
+    key = item;
+    left = nullptr;
+    right = nullptr;
+    p = nullptr;
 };
 
 template <class T>
@@ -17,84 +17,87 @@ BSTNode<T>::BSTNode(const BSTNode<T> &node)
 {
     key = node.key;
     left = node.left;
-    right = node.right;
+    right = node.r;
     p = node.p;
 };
 
 template <class T>
-BSTNode<T>::~BSTNode(void) {};
+BSTNode<T>::~BSTNode(void){};
 
 template <class T>
 BSTNode<T> *BSTNode<T>::operator=(const BSTNode<T> &node)
 {
     key = node.key;
     left = node.left;
-    right = node.right;
+    right = node.r;
     p = node.p;
 };
 
 template <class T>
-T BSTNode<T>::value() const
-{
-    return key;
-};
-
-
-template <class T>
 BSTNode<T> *BSTNode<T>::treeMin() const
 {
-    if (left == NULL)
+    if (left == nullptr)
     {
         return *this;
-    };
+    }
     else
     {
-        return left.treeMin();
-    }
+        return left->treeMin();
+    };
 };
 
 template <class T>
 BSTNode<T> *BSTNode<T>::treeMax() const
 {
-    if (right == NULL)
+    if (right == nullptr)
     {
         return *this;
-    };
+    }
     else
     {
-        return right.treeMax();
-    }
+        return right->treeMax();
+    };
 };
 
 template <class T>
 void BSTNode<T>::printPreOrderTraversal() const
 {
-    if (this != NULL)
+
+    cout << key;
+    if (left != nullptr)
     {
-        cout << key;
-        printInOrderTraversal(left);
-        printInOrderTraversal(right);
+        left -> printPreOrderTraversal();
+    };
+    if (right != nullptr)
+    {
+        right -> printPreOrderTraversal();
     };
 };
 
 template <class T>
 void BSTNode<T>::printInOrderTraversal() const
 {
-    if (this != NULL)
+    if (left != nullptr)
     {
-        printInOrderTraversal(left);
-        cout << key;
-        printInOrderTraversal(right);
+        left -> printInOrderTraversal();
+    };
+    cout << key;
+    if (right != nullptr)
+    {
+        right -> printInOrderTraversal();
     };
 };
 
 template <class T>
 void BSTNode<T>::printPostOrderTraversal() const
 {
-    if (this != NULL)
+    if (left != nullptr)
     {
-        printInOrderTraversal(left);
-        printInOrderTraversal(right);
-        cout << key;
+        left -> printPostOrderTraversal();
     };
+    if (right != nullptr)
+    {
+        right -> printPostOrderTraversal();
+    };
+    cout << key;
 };

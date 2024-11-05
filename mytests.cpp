@@ -1,13 +1,8 @@
 #include <iostream>
-#include "BSTNode.hpp"
 #include "BSTNode.cpp"
-#include "BST.hpp"
 #include "BST.cpp"
-#include "RBTreeNode.hpp"
-#include "RBTreeNode.cpp"
-#include "RBTree.hpp"
-#include "RBTree.cpp"
-#include "string"
+
+using namespace std;
 
 /*===========================================================================
 BSTNode_sanity_check()
@@ -126,6 +121,13 @@ bool RBT_sanity_check()
 
 int main()
 {
-
+    BST<int> myBST;
+    cout << myBST.size();
+    for (int i = 0; i < 10; i++)
+    {
+        myBST.insert(i);
+    };
+    cout << myBST.size();
+    myBST.printInOrderTraversal();
     return 0;
 };

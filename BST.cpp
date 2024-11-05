@@ -1,5 +1,6 @@
 #include <iostream>
 #include "BST.hpp"
+#include "BSTNode.hpp"
 #include "customexceptions.hpp"
 
 using namespace std;
@@ -11,24 +12,36 @@ Parameters: None
 Return: None
 ===========================================================================*/
 template <class T>
-BST<T>::        BST(void){
-    root = NULL;
-    size = 0;
+BST<T>::BST(void)
+{
+    root = nullptr;
+    bst_size = 0;
 };
 
 template <class T>
-BST<T>::        BST(const BST<T> &tree){
+BST<T>::BST(const BST<T> &tree){};
 
+template <class T>
+BST<T>::~BST(void)
+{
+    deallocate(root);
 };
 
 template <class T>
-BST<T>::        ~BST(void){
-
-};
+BST<T> BST<T>::operator=(const BST<T> &tree) {};
 
 template <class T>
-BST<T>          BST<T>::operator=   (const BST<T> &tree){
-
+void BST<T>::deallocate(BSTNode<T> *node)
+{
+    if (node->left != nullptr)
+    {
+        deallocate(node->left);
+    };
+    if (node->right != nullptr)
+    {
+        deallocate(node->right);
+    };
+    delete node;
 };
 
 /*===========================================================================
@@ -38,18 +51,23 @@ Parameters: Pointer to current subtree, pointer to new subtree
 Return: None
 ===========================================================================*/
 template <class T>
-void            BST<T>::transplant  (BSTNode<T> *oldNode, BSTNode<T> *newNode){
-    if (oldNode.p == NULL) {
+void BST<T>::transplant(BSTNode<T> *oldNode, BSTNode<T> *newNode)
+{
+    if (oldNode->p == nullptr)
+    {
         root = newNode;
     }
-    elseif (oldNode == oldNode.p.left) {
-        oldNode.p.left = newNode;
+    else if (oldNode == oldNode->p->left)
+    {
+        oldNode->p->left = newNode;
     }
-    else {
-        oldNode.p.right = newNode;
+    else
+    {
+        oldNode->p->right = newNode;
     }
-    if (newNode != NULL) {
-        newNode.p = oldNode.p;
+    if (newNode != nullptr)
+    {
+        newNode->p = oldNode->p;
     }
 };
 
@@ -60,7 +78,8 @@ Parameters: None
 Return: True if the tree is empty, false if isn't
 ===========================================================================*/
 template <class T>
-bool            BST<T>::isEmpty     ()      const{
+bool BST<T>::isEmpty() const
+{
     return (bst_size == 0);
 };
 
@@ -71,13 +90,14 @@ Parameters: None
 Return: The size of the binary search tree
 ===========================================================================*/
 template <class T>
-long            BST<T>::size        ()      const{
+long BST<T>::size() const
+{
     return bst_size;
 };
 
 /*===========================================================================
 insert function
-Inserts a node with value value into the tree and returns 
+Inserts a node with value value into the tree and returns
 a pointer to the inserted node.
 Parameters: The value to be inserted
 Return: The pointer to the inserted node
@@ -85,36 +105,36 @@ Return: The pointer to the inserted node
 template <class T>
 BSTNode<T> *BST<T>::insert(T value)
 {
-    BSTNode<T> z(value);
-    BSTNode<T> x = root;
-    BSTNode<T> y = NULL;
-    while (x != NULL)
+    BSTNode<T> *z = new BSTNode<T>(value);
+    BSTNode<T> *x = root;
+    BSTNode<T> *y = nullptr;
+    while (x != nullptr)
     {
         y = x;
-        if (z.key < x.key)
+        if (z->key < x->key)
         {
-            x = x.left;
+            x = x->left;
         }
         else
         {
-            x = x.right;
+            x = x->right;
         };
     };
-    z.p = y;
-    if (y == NULL)
+    z->p = y;
+    if (y == nullptr)
     {
         root = z;
     }
-    else if (z.key < y.key)
+    else if (z->key < y->key)
     {
-        y.left = z;
+        y->left = z;
     }
     else
     {
-        y.right = z;
+        y->right = z;
     }
-
     bst_size++;
+    return z;
 };
 
 /*===========================================================================
@@ -124,32 +144,40 @@ Parameters: The value to be removed
 Return: None
 ===========================================================================*/
 template <class T>
-void            BST<T>::remove      (T value){
-    if (isEmpty()) {
-        throw empty_tree_exception();     
+void BST<T>::remove(T value)
+{
+    if (isEmpty())
+    {
+        throw empty_tree_exception();
     }
 
-    BSTNode<T>* check_node = search(value);
-    if (check_node == NULL){
+    BSTNode<T> *z = search(value);
+
+    if (z == nullptr)
+    {
         throw value_not_in_tree_exception();
     }
 
-    if value.left == NULL {
-        transplant(value, value.right);
+    if (z->left == nullptr)
+    {
+        transplant(z, z->right);
     }
-    else if value.right == NULL {
-        transplant(value, value.left);
+    else if (z->right == nullptr)
+    {
+        transplant(z, z->left);
     }
-    else {
-        BSTNode<T>* y = value.right.treeMin();
-        if (y != value.right){
-            transplant(y, y.right);
-            y.right = value.right;
-            y.right.p = y;
+    else
+    {
+        BSTNode<T> *y = z->right->treeMin();
+        if (y != z->right)
+        {
+            transplant(y, y->right);
+            y->right = z->right;
+            y->right->p = y;
         }
         transplant(value, y);
-        y.left = value.left;
-        y.left.p = y;
+        y->left = value->left;
+        y->left->p = y;
     }
 
     bst_size--;
@@ -162,13 +190,17 @@ Parameters: The value to be searched
 Return: The pointer of the value in the tree
 ===========================================================================*/
 template <class T>
-BSTNode<T>*     BST<T>::search      (T value)   const{
+BSTNode<T> *BST<T>::search(T value) const
+{
     BSTNode<T> x = root;
-    while (x != NULL && value != x.key){
-        if (value < x.key){
-            x = x.left;
+    while (x != nullptr && value != x->key)
+    {
+        if (value < x->key)
+        {
+            x = x->left;
         }
-        else x = x.right;
+        else
+            x = x->right;
     }
     return x;
 };
@@ -180,16 +212,15 @@ Parameters: None
 Return: The pointer of the smallest value of the binary search tree
 ===========================================================================*/
 template <class T>
-BSTNode<T>*     BST<T>::treeMin     ()          const{
-    if (isEmpty()){
+BSTNode<T> *BST<T>::treeMin() const
+{
+    if (isEmpty())
+    {
         throw empty_tree_exception();
     }
-    else {
-        BSTNode<T>* x = root;
-        while (x.left != NULL){
-            x = x.left;
-        }
-        return x;
+    else
+    {
+        return root->treeMin();
     }
 };
 
@@ -200,16 +231,15 @@ Parameters: None
 Return: The pointer of largest value of the binary search tree
 ===========================================================================*/
 template <class T>
-BSTNode<T>*     BST<T>::treeMax     ()          const{
-    if (isEmpty()){
+BSTNode<T> *BST<T>::treeMax() const
+{
+    if (isEmpty())
+    {
         throw empty_tree_exception();
     }
-    else {
-        BSTNode<T>* x = root;
-        while (x.right != NULL){
-            x = x.right;
-        }
-        return x;
+    else
+    {
+        return root->treeMax();
     }
 };
 
@@ -220,8 +250,9 @@ Parameters: None
 Return: None
 ===========================================================================*/
 template <class T>
-void            BST<T>::printPreOrderTraversal()          const{
-    root.printPreOrderTraversal();
+void BST<T>::printPreOrderTraversal() const
+{
+    root->printPreOrderTraversal();
 };
 
 /*===========================================================================
@@ -231,8 +262,9 @@ Parameters: None
 Return: None
 ===========================================================================*/
 template <class T>
-void            BST<T>::printInOrderTraversal()          const{
-    root.printInOrderTraversal();
+void BST<T>::printInOrderTraversal() const
+{
+    root->printInOrderTraversal();
 };
 
 /*===========================================================================
@@ -242,6 +274,7 @@ Parameters: None
 Return: None
 ===========================================================================*/
 template <class T>
-void            BST<T>::printPostOrderTraversal()          const{
-    root.printPostOrderTraversal();
+void BST<T>::printPostOrderTraversal() const
+{
+    root->printPostOrderTraversal();
 };
