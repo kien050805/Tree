@@ -34,7 +34,7 @@ BSTNode<T> *BSTNode<T>::operator=(const BSTNode<T> &node)
 };
 
 template <class T>
-BSTNode<T> *BSTNode<T>::treeMin() const
+BSTNode<T> *BSTNode<T>::treeMin()
 {
     if (left == nullptr)
     {
@@ -47,7 +47,7 @@ BSTNode<T> *BSTNode<T>::treeMin() const
 };
 
 template <class T>
-BSTNode<T> *BSTNode<T>::treeMax() const
+BSTNode<T> *BSTNode<T>::treeMax()
 {
     if (right == nullptr)
     {
@@ -63,7 +63,7 @@ template <class T>
 void BSTNode<T>::printPreOrderTraversal() const
 {
 
-    cout << key;
+    cout << key << " ";
     if (left != nullptr)
     {
         left -> printPreOrderTraversal();
@@ -81,7 +81,7 @@ void BSTNode<T>::printInOrderTraversal() const
     {
         left -> printInOrderTraversal();
     };
-    cout << key;
+    cout << key << " ";
     if (right != nullptr)
     {
         right -> printInOrderTraversal();
@@ -99,5 +99,5 @@ void BSTNode<T>::printPostOrderTraversal() const
     {
         right -> printPostOrderTraversal();
     };
-    cout << key;
+    cout << key << " ";
 };

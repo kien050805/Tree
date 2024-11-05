@@ -21,8 +21,8 @@ class BST
 		BSTNode<T>		*root;
 		long			bst_size;	
 
-		void			deallocate 					(BSTNode<T> *node);
-
+		void			deallocate 					( BSTNode<T> *node );
+        BSTNode<T>*     copy                        ( const BSTNode<T> *node );
 	public:
 						BST		                    ( void );
 						BST		                    ( const BST<T> &tree );

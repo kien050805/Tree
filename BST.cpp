@@ -19,7 +19,11 @@ BST<T>::BST(void)
 };
 
 template <class T>
-BST<T>::BST(const BST<T> &tree){};
+BST<T>::BST(const BST<T> &tree)
+{
+    root = copy(tree.root);
+    bst_size = tree.bst_size;
+};
 
 template <class T>
 BST<T>::~BST(void)
@@ -28,11 +32,22 @@ BST<T>::~BST(void)
 };
 
 template <class T>
-BST<T> BST<T>::operator=(const BST<T> &tree) {};
+BST<T> BST<T>::operator=(const BST<T> &tree)
+
+{
+    deallocate(root);
+    root = copy(tree.root);
+    bst_size = tree.bst_size;
+    return *this;
+};
 
 template <class T>
 void BST<T>::deallocate(BSTNode<T> *node)
 {
+    if (node == nullptr)
+    {
+        return;
+    };
     if (node->left != nullptr)
     {
         deallocate(node->left);
@@ -42,6 +57,24 @@ void BST<T>::deallocate(BSTNode<T> *node)
         deallocate(node->right);
     };
     delete node;
+};
+
+template <class T>
+BSTNode<T> *BST<T>::copy(const BSTNode<T> *node)
+{
+    BSTNode<T> *z = new BSTNode<T>(node->key);
+
+    if (node->right)
+    {
+        z->right = copy(node->right);
+        z->right->p = z;
+    };
+    if (node->left)
+    {
+        z->left = copy(node->left);
+        z->left->p = z;
+    };
+    return z;
 };
 
 /*===========================================================================
@@ -175,8 +208,8 @@ void BST<T>::remove(T value)
             y->right = z->right;
             y->right->p = y;
         }
-        transplant(value, y);
-        y->left = value->left;
+        transplant(z, y);
+        y->left = z->left;
         y->left->p = y;
     }
 
@@ -192,7 +225,7 @@ Return: The pointer of the value in the tree
 template <class T>
 BSTNode<T> *BST<T>::search(T value) const
 {
-    BSTNode<T> x = root;
+    BSTNode<T> *x = root;
     while (x != nullptr && value != x->key)
     {
         if (value < x->key)

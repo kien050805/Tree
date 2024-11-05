@@ -33,8 +33,8 @@ class BSTNode
                         ~BSTNode                (void);
         BSTNode<T>*		operator=	            (const BSTNode<T> &node);
 
-        BSTNode<T>*     treeMin                 () const;
-        BSTNode<T>*     treeMax                 () const;
+        BSTNode<T>*     treeMin                 ();
+        BSTNode<T>*     treeMax                 ();
         void            printPreOrderTraversal  () const;
         void            printInOrderTraversal   () const;
         void            printPostOrderTraversal () const;
