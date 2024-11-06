@@ -5,11 +5,31 @@
 
 using namespace std;
 
+/*===========================================================================
+Default constructor
+Creates a new red black tree with type T
+Parameters: None
+Return: None
+===========================================================================*/
 template <class T>
-RBTree<T>::RBTree(void){};
+RBTree<T>::RBTree(void)
+{
+    root = nullptr;
+    rbt_size = 0;
+};
 
+/*===========================================================================
+Default copy constructor
+Copy a red black tree to a new red black tree both with type T
+Parameters: None
+Return: None
+===========================================================================*/
 template <class T>
-RBTree<T>::RBTree(const RBTree<T> &tree){};
+RBTree<T>::RBTree(const RBTree<T> &tree)
+{
+    root = copy(tree.root);
+    rbt_size = tree.rbt_size;
+};
 
 template <class T>
 RBTree<T>::~RBTree(void){};
