@@ -20,10 +20,10 @@ class RBTree
         void                right_rotate                ( RBTreeNode<T>* node);
 
 	public: 
-						    BST		                    ( void );
-						    BST		                    ( const BST<T> &tree );
-						    ~BST		                ( void );
-		BST<T>			    operator=	                ( const BST<T> &tree );
+						    RBTree		                ( void );
+						    RBTree		                ( const RBTree<T> &tree );
+						    ~RBTree		                ( void );
+		RBTree<T>			operator=	                ( const RBTree<T> &tree );
 
         void                transplant                  (RBTreeNode<T> *oldNode, RBTreeNode<T> *newNode);
         bool                isEmpty                     () const;
