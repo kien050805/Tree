@@ -36,7 +36,8 @@ class RBTree
         void        	    printPreOrderTraversal      () const;
         void        	    printInOrderTraversal       () const;
         void        	    printPostOrderTraversal     () const;
-
+        
+        friend class RBTreeNode<T>;
 };
 
 
