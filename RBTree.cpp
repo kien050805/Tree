@@ -45,19 +45,61 @@ template <class T>
 void RBTree<T>::remove(T value) {};
 
 template <class T>
-RBTreeNode<T> *RBTree<T>::search(T value) const {};
+RBTreeNode<T> *RBTree<T>::search(T value) const 
+{
+        RBTreeNode<T> *x = root;
+    while (x != nullptr && value != x->key)
+    {
+        if (value < x->key)
+        {
+            x = x->left;
+        }
+        else
+            x = x->right;
+    }
+    return x;
+};
 
 template <class T>
-RBTreeNode<T> *RBTree<T>::treeMin() const {};
+RBTreeNode<T> *RBTree<T>::treeMin() const 
+{
+        if (isEmpty())
+    {
+        throw empty_tree_exception();
+    }
+    else
+    {
+        return root->treeMin();
+    }
+};
 
 template <class T>
-RBTreeNode<T> *RBTree<T>::treeMax() const {};
+RBTreeNode<T> *RBTree<T>::treeMax() const 
+{
+        if (isEmpty())
+    {
+        throw empty_tree_exception();
+    }
+    else
+    {
+        return root->treeMax();
+    }
+};
 
 template <class T>
-void RBTree<T>::printPreOrderTraversal() const {};
+void RBTree<T>::printPreOrderTraversal() const 
+{
+    root->printPreOrderTraversal();
+};
 
 template <class T>
-void RBTree<T>::printInOrderTraversal() const {};
+void RBTree<T>::printInOrderTraversal() const 
+{
+    root->printInOrderTraversal();
+};
 
 template <class T>
-void RBTree<T>::printPostOrderTraversal() const {};
+void RBTree<T>::printPostOrderTraversal() const 
+{
+    root->printPostOrderTraversal();
+};
