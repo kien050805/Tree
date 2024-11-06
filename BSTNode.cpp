@@ -62,7 +62,6 @@ BSTNode<T> *BSTNode<T>::treeMax()
 template <class T>
 void BSTNode<T>::printPreOrderTraversal() const
 {
-
     cout << key << " ";
     if (left != nullptr)
     {
