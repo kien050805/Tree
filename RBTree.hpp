@@ -12,7 +12,7 @@ class RBTree
 {
 	private:
 		RBTreeNode<T>*      root;
-		long			    bst_size;	
+		long			    rbt_size;	
 
 		void			    deallocate 					( RBTreeNode<T> *node );
         RBTreeNode<T>*      copy                        ( const RBTreeNode<T> *node );
