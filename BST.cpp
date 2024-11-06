@@ -18,6 +18,12 @@ BST<T>::BST(void)
     bst_size = 0;
 };
 
+/*===========================================================================
+Default copy constructor
+Copy a binary search tree to a new binary search tree both with type T
+Parameters: A binary tree type T
+Return: None
+===========================================================================*/
 template <class T>
 BST<T>::BST(const BST<T> &tree)
 {
@@ -25,12 +31,24 @@ BST<T>::BST(const BST<T> &tree)
     bst_size = tree.bst_size;
 };
 
+/*===========================================================================
+Default destructor
+Parameters: None
+Return: None
+===========================================================================*/
 template <class T>
 BST<T>::~BST(void)
 {
     deallocate(root);
 };
 
+/*===========================================================================
+The = operator
+Overloading the = operator to assign a binary search tree, functions similar
+to the copy constructor
+Parameters: A binary search tree type T
+Return: A copied binary search tree type T
+===========================================================================*/
 template <class T>
 BST<T> BST<T>::operator=(const BST<T> &tree)
 
@@ -41,6 +59,12 @@ BST<T> BST<T>::operator=(const BST<T> &tree)
     return *this;
 };
 
+/*===========================================================================
+The deallocate helper function
+Recursively delete all nodes that belong to the given parent node (included)
+Parameters: A node of a binary search tree type T
+Return: None
+===========================================================================*/
 template <class T>
 void BST<T>::deallocate(BSTNode<T> *node)
 {
@@ -59,6 +83,13 @@ void BST<T>::deallocate(BSTNode<T> *node)
     delete node;
 };
 
+/*===========================================================================
+The copy helper function
+Copy a (sub) binary search tree from a given parent node to a new binary 
+search tree both with type T
+Parameters: A node of a binary search tree type T
+Return: A copied binary search tree type T
+===========================================================================*/
 template <class T>
 BSTNode<T> *BST<T>::copy(const BSTNode<T> *node)
 {
