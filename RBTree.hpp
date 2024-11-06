@@ -16,6 +16,9 @@ class RBTree
 
 		void			    deallocate 					( RBTreeNode<T> *node );
         RBTreeNode<T>*      copy                        ( const RBTreeNode<T> *node );
+        void                left_rotate                 ( RBTreeNode<T>* node);
+        void                right_rotate                ( RBTreeNode<T>* node);
+
 	public: 
 						    BST		                    ( void );
 						    BST		                    ( const BST<T> &tree );
