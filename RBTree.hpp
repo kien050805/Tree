@@ -28,7 +28,7 @@ class RBTree
         void                transplant                  (RBTreeNode<T> *oldNode, RBTreeNode<T> *newNode);
         bool                isEmpty                     () const;
         long                size                        () const;
-        RBTreeNode<T>*      insert                      (T value)
+        RBTreeNode<T>*      insert                      (T value);
         void        	    remove                      (T value);
         RBTreeNode<T>* 	    search                      (T value) const;
         RBTreeNode<T>* 	    treeMin                     () const;
