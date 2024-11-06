@@ -1,24 +1,10 @@
 #include <iostream>
+#include <sstream>
+#include <string>
 #include "BSTNode.cpp"
 #include "BST.cpp"
 
 using namespace std;
-
-/*===========================================================================
-BSTNode_sanity_check()
-Run a series of predefined test cases to ensure that the BSTNode class is 
-functioning correctly.
-Parameters: None
-Return: boolean value depending on if the function pass the test cases
-===========================================================================*/
-bool BSTNode_sanity_check()
-{
-    bool check = true;
-
-
-    
-    return check;
-};
 
 /*===========================================================================
 BST_sanity_check()
@@ -35,6 +21,8 @@ bool BST_sanity_check()
     BST<string> tree_1;
     BST<double> tree_2;
     BST<int> tree_3;
+    BST<int> tree_4;
+
 
     // Test isEmpty on an empty tree
     if (!tree_0.isEmpty()){
@@ -85,21 +73,63 @@ bool BST_sanity_check()
         check = false;
     };
 
-    return check;
-};
+    // Test isEmpty on a tree with values
+    if (tree_0.isEmpty()){
+        check = false;
+    };
 
-/*===========================================================================
-RBTNode_sanity_check()
-Run a series of predefined test cases to ensure that the RBTNode class is 
-functioning correctly.
-Parameters: None
-Return: boolean value depending on if the function pass the test cases
-===========================================================================*/
-bool RBTNode_sanity_check()
-{
-    bool check = true;
-
+    // Test copy constructor
+    BST<int> tree_5(tree_0);
+    if (tree_5.size() != 5){
+        check = false;
+    };
     
+    // Test = operator overloading
+    tree_4 = tree_0;
+    if (tree_4.size() != 5){
+        check = false;
+    };
+
+    // Test remove
+    tree_3.remove(0);
+    if (tree_3.size() != 4){
+        check = false;
+    };
+
+
+    // Capture output using ostringstream
+    ostringstream ossPreOrder, ossInOrder, ossPostOrder;
+    streambuf* originalCoutBuffer = cout.rdbuf();
+
+    // Capture Pre-order traversal
+    cout.rdbuf(ossPreOrder.rdbuf());
+    tree_0.printPreOrderTraversal();
+    // Capture In-order traversal
+    cout.rdbuf(ossInOrder.rdbuf());
+    tree_0.printInOrderTraversal();
+    // Capture Post-order traversal
+     cout.rdbuf(ossPostOrder.rdbuf());
+    tree_0.printPostOrderTraversal();
+
+    // Restore original cout buffer
+    cout.rdbuf(originalCoutBuffer);
+
+    // Test printPreOrderTraversal
+    string captured_preorder = ossPreOrder.str();
+    if (captured_preorder != "10 -5 -12 7 15 "){
+        check = false;
+    };
+    // Test printInOrderTraversal
+    string captured_inorder = ossInOrder.str();
+    if (captured_inorder != "-12 -5 7 10 15 "){
+        check = false;
+    };
+    // Test printPostOrderTraversal
+    string captured_postorder = ossPostOrder.str();
+    if (captured_postorder != "-12 7 -5 15 10 "){
+        check = false;
+    };
+
     return check;
 };
 
