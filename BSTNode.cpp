@@ -43,7 +43,7 @@ template <class T>
 BSTNode<T>::~BSTNode(void){};
 
 /*===========================================================================
-The = operator
+Assignment operator
 Overloading the = operator to assign a binary search tree node, functions
 similar to the copy constructor
 Parameters: A binary search tree node with value of type T
@@ -158,6 +158,12 @@ void BSTNode<T>::printPostOrderTraversal() const
     cout << key << " ";
 };
 
+/*===========================================================================
+value function
+Prints the value mapped to the pointer
+Parameters: None
+Return: Value type T
+===========================================================================*/
 template <class T>
 T BSTNode<T>::value()
 {
