@@ -50,8 +50,8 @@ BST<T>::~BST(void)
 };
 
 /*===========================================================================
-The = operator
-Overloading the = operator to assign a binary search tree, functions similar
+Assignment operator
+Overloading assignment operator to assign a binary search tree, functions similar
 to the copy constructor
 Parameters: A binary search tree type T
 Return: A copied binary search tree type T
@@ -263,11 +263,6 @@ Return: The pointer of the value in the tree
 template <class T>
 BSTNode<T> *BST<T>::search(T value) const
 {
-    if (isEmpty())
-    {
-        throw empty_tree_exception();
-    }
-
     BSTNode<T> *x = root;
     while (x != nullptr && value != x->key)
     {
@@ -277,11 +272,6 @@ BSTNode<T> *BST<T>::search(T value) const
         }
         else
             x = x->right;
-    }
-
-    if (x == nullptr)
-    {
-        throw value_not_in_tree_exception();
     }
 
     return x;

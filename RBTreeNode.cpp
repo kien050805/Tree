@@ -1,3 +1,10 @@
+/*===========================================================================
+Kien Le, Nguyen Nguyen, Bach Nguyen
+7 November 2024
+RBTreeNode.cpp
+This file contains the implementations of the red-black tree functions.
+===========================================================================*/ 
+
 #include <iostream>
 #include "RBTreeNode.hpp"
 
@@ -83,7 +90,6 @@ parent node
 Parameters: None
 Return: The pointer of the smallest value of the sub binary search tree
 ===========================================================================*/
-template <class T>
 template <class T>
 RBTreeNode<T> *RBTreeNode<T>::treeMin()
 {

@@ -1,3 +1,10 @@
+/*===========================================================================
+Kien Le, Nguyen Nguyen, Bach Nguyen
+7 November 2024
+RBTree.cpp
+This file contains the implementations of the red-black tree functions.
+===========================================================================*/ 
+
 #include <iostream>
 #include "RBTree.hpp"
 #include "RBTreeNode.hpp"
@@ -32,6 +39,11 @@ RBTree<T>::RBTree(const RBTree<T> &tree)
     rbt_size = tree.rbt_size;
 };
 
+/*===========================================================================
+Default destructor
+Parameters: None
+Return: None
+===========================================================================*/
 template <class T>
 RBTree<T>::~RBTree(void)
 {
@@ -39,6 +51,13 @@ RBTree<T>::~RBTree(void)
     delete NIL;
 };
 
+/*===========================================================================
+Assignment operator
+Overloading assignment operator to assign a red-black tree, functions similar
+to the copy constructor
+Parameters: A red-black tree type T
+Return: A copied red-black tree type T
+===========================================================================*/
 template <class T>
 RBTree<T> RBTree<T>::operator=(const RBTree<T> &tree)
 {
@@ -349,6 +368,12 @@ void RBTree<T>::remove(T value)
     }
 
     RBTreeNode<T> *z = search(value);
+
+    if (z == nullptr)
+    {
+        throw value_not_in_tree_exception();
+    }
+
     RBTreeNode<T> *y = z;
     RBTreeNode<T> *x;
     bool y_original_color = y->color;
@@ -389,6 +414,12 @@ void RBTree<T>::remove(T value)
     rbt_size--;
 };
 
+/*===========================================================================
+search function
+Returns a pointer to a node with value value.
+Parameters: The value to be searched
+Return: The pointer of the value in the tree
+===========================================================================*/
 template <class T>
 RBTreeNode<T> *RBTree<T>::search(T value) const
 {
@@ -402,6 +433,7 @@ RBTreeNode<T> *RBTree<T>::search(T value) const
         else
             x = x->right;
     }
+
     return x;
 };
 
