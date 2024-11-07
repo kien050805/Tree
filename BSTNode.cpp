@@ -1,3 +1,10 @@
+/*===========================================================================
+Kien Le, Nguyen Nguyen, Bach Nguyen
+7 November 2024
+BSTNode.cpp
+This file contains the implementations of the binary search tree functions.
+===========================================================================*/ 
+
 #include <iostream>
 #include "BSTNode.hpp"
 
