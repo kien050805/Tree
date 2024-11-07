@@ -1,8 +1,8 @@
 /*===========================================================================
 Kien Le, Nguyen Nguyen, Bach Nguyen
 7 November 2024
-BSTNode.hpp
-This file contains the definitions of the sorting functions.
+RBTreeNode.hpp
+This file contains the definitions of the red-black tree functions.
 ===========================================================================*/
 
 

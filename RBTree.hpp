@@ -1,3 +1,10 @@
+/*===========================================================================
+Kien Le, Nguyen Nguyen, Bach Nguyen
+7 November 2024
+RBTree.hpp
+This file contains the definitions of the red-black tree functions.
+===========================================================================*/
+
 #include <iostream>
 
 using namespace std;

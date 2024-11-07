@@ -2,7 +2,7 @@
 Kien Le, Nguyen Nguyen, Bach Nguyen
 7 November 2024
 BST.hpp
-This file contains the definitions of the binary search tree implementations
+This file contains the definitions of the binary search tree functions.
 ===========================================================================*/
 
 #include <iostream>

@@ -2,7 +2,7 @@
 Kien Le, Nguyen Nguyen, Bach Nguyen
 7 November 2024
 BSTNode.hpp
-This file contains the definitions of the sorting functions.
+This file contains the definitions of the binary search tree functions.
 ===========================================================================*/
 
 
