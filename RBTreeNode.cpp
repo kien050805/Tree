@@ -172,7 +172,7 @@ Return: None
 template <class T>
 void RBTreeNode<T>::printPostOrderTraversal() const
 {
-    if (left == left->left)
+    if (left != left->left)
     {
         left->printPostOrderTraversal();
     };
