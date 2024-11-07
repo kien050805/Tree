@@ -272,7 +272,7 @@ BSTNode<T> *BST<T>::search(T value) const
             x = x->right;
     }
 
-    if (x == nullptr || value == x->key)
+    if (x == nullptr)
     {
         throw value_not_in_tree_exception();
     }
