@@ -425,7 +425,7 @@ void RBTree<T>::remove(T value)
 
     RBTreeNode<T> *z = search(value);
 
-    if (z == nullptr)
+    if (z == NIL)
     {
         throw value_not_in_tree_exception();
     }
