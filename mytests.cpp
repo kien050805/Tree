@@ -33,7 +33,7 @@ bool BST_sanity_check()
         check = false;
     }
     try {
-        (tree_0.search(99)).value(); // Attempt to search in an empty tree
+        tree_0.search(99)->value(); // Attempt to search in an empty tree
         check = false;
     } catch (const empty_tree_exception& e) {
         // Expected exception for searching in an empty tree

@@ -157,3 +157,9 @@ void BSTNode<T>::printPostOrderTraversal() const
     };
     cout << key << " ";
 };
+
+template <class T>
+T BSTNode<T>::value()
+{
+    return key;
+};

@@ -39,6 +39,8 @@ class BSTNode
         void            printInOrderTraversal   () const;
         void            printPostOrderTraversal () const;
 
+        T               value                   ();
+
         friend class BST<T>;
 };
 

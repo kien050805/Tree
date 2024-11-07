@@ -342,10 +342,3 @@ void BST<T>::printPostOrderTraversal() const
 {
     root->printPostOrderTraversal();
 };
-
-
-template <class T>
-T BST<T>::value() const
-{
-    return *this->key;
-};
