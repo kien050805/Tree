@@ -133,10 +133,12 @@ template <class T>
 void RBTreeNode<T>::printPreOrderTraversal() const
 {
     cout << key << " ";
+    
     if (left != right->right)
     {
         left->printPreOrderTraversal();
     };
+
     if (right != right->right)
     {
         right->printPreOrderTraversal();
@@ -156,7 +158,9 @@ void RBTreeNode<T>::printInOrderTraversal() const
     {
         left->printInOrderTraversal();
     };
+
     cout << key << " ";
+
     if (right != right -> right)
     {
         right->printInOrderTraversal();
@@ -176,10 +180,12 @@ void RBTreeNode<T>::printPostOrderTraversal() const
     {
         left->printPostOrderTraversal();
     };
+
     if (right != right->right)
     {
         right->printPostOrderTraversal();
     };
+
     cout << key << " ";
 };
 

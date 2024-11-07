@@ -115,10 +115,12 @@ template <class T>
 void BSTNode<T>::printPreOrderTraversal() const
 {
     cout << key << " ";
+    
     if (left != nullptr)
     {
         left -> printPreOrderTraversal();
     };
+
     if (right != nullptr)
     {
         right -> printPreOrderTraversal();
@@ -138,7 +140,9 @@ void BSTNode<T>::printInOrderTraversal() const
     {
         left -> printInOrderTraversal();
     };
+
     cout << key << " ";
+
     if (right != nullptr)
     {
         right -> printInOrderTraversal();
@@ -158,10 +162,12 @@ void BSTNode<T>::printPostOrderTraversal() const
     {
         left -> printPostOrderTraversal();
     };
+
     if (right != nullptr)
     {
         right -> printPostOrderTraversal();
     };
+
     cout << key << " ";
 };
 

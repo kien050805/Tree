@@ -190,6 +190,13 @@ void RBTree<T>::right_rotate(RBTreeNode<T> *node)
     node->p = y;
 };
 
+/*===========================================================================
+insert_fixup function
+An auxiliary function which recolors nodes and performs rotations to
+restore and maintain red-black properties
+Parameters: A node of a red-black tree type T
+Return: None
+===========================================================================*/
 template <class T>
 void RBTree<T>::insert_fixup(RBTreeNode<T> *z)
 {
@@ -244,6 +251,13 @@ void RBTree<T>::insert_fixup(RBTreeNode<T> *z)
     root->color = true;
 };
 
+/*===========================================================================
+delete_fixup function
+An auxiliary function which recolors nodes and performs rotations to
+restore and maintain red-black properties
+Parameters: A node of a red-black tree type T
+Return: None
+===========================================================================*/
 template <class T>
 void RBTree<T>::delete_fixup(RBTreeNode<T> *x)
 {
