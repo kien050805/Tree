@@ -15,6 +15,8 @@ This file contains the sanity checks for both types of trees
 
 using namespace std;
 
+const int TEST_COUNT = 19;
+
 /*===========================================================================
 BST_sanity_check()
 Run a series of predefined test cases to ensure that the BST class is 
@@ -339,18 +341,18 @@ int RBT_sanity_check()
 
 int main()
 {
-    cout << "Testing BST class:" << endl;
-    if (BST_sanity_check() != 0) {
-        cout << BST_sanity_check() << "test cases failed." << endl;
-    } else {
-        cout << "All test cases passed (" << BST_sanity_check() << " cases)."<< endl;
+    cout << "Testing BST class:" << endl; 
+    cout << BST_sanity_check() << " test cases failed." << endl;
+    if (BST_sanity_check() == 0) {
+        cout << "All test cases passed (" << TEST_COUNT << " cases total)."<< endl;
     }
 
+    cout << endl;
+
     cout << "Testing RBTree class:" << endl;
-    if (RBT_sanity_check() != 0) {
-        cout << RBT_sanity_check() << "test cases failed." << endl;
-    } else {
-        cout << "All test cases passed (" << RBT_sanity_check() << " cases)."<< endl;
+    cout << RBT_sanity_check() << " test cases failed." << endl;
+    if (RBT_sanity_check() == 0) {
+        cout << "All test cases passed (" << TEST_COUNT << " cases total)."<< endl;
     }
 
     return 0;
