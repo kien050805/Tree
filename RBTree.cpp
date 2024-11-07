@@ -28,7 +28,7 @@ Return: None
 template <class T>
 RBTree<T>::RBTree(const RBTree<T> &tree)
 {
-    root = copy(tree.root);
+    root = copy(tree.root, tree);
     rbt_size = tree.rbt_size;
 };
 
@@ -43,7 +43,7 @@ template <class T>
 RBTree<T> RBTree<T>::operator=(const RBTree<T> &tree)
 {
     deallocate(root);
-    root = copy(tree.root);
+    root = copy(tree.root, tree);
     rbt_size = tree.rbt_size;
     return *this;
 };
@@ -51,15 +51,15 @@ RBTree<T> RBTree<T>::operator=(const RBTree<T> &tree)
 template <class T>
 void RBTree<T>::deallocate(RBTreeNode<T> *node)
 {
-    if (node == node->p)
+    if (node == NIL)
     {
         return;
     };
-    if (node->left != node->left->left)
+    if (node->left != NIL)
     {
         deallocate(node->left);
     };
-    if (node->right != node->right->right)
+    if (node->right != NIL)
     {
         deallocate(node->right);
     };
@@ -67,19 +67,28 @@ void RBTree<T>::deallocate(RBTreeNode<T> *node)
 };
 
 template <class T>
-RBTreeNode<T> *RBTree<T>::copy(const RBTreeNode<T> *node)
+RBTreeNode<T> *RBTree<T>::copy(const RBTreeNode<T> *node, const RBTree<T> &tree)
 {
     RBTreeNode<T> *z = new RBTreeNode<T>(node->key);
+    z->color = node->color;
 
-    if (node->right)
+    if (node->right != tree.NIL)
     {
-        z->right = copy(node->right);
+        z->right = copy(node->right, tree);
         z->right->p = z;
-    };
-    if (node->left)
+    }
+    else
     {
-        z->left = copy(node->left);
+        z->right = NIL;
+    };
+    if (node->left != tree.NIL)
+    {
+        z->left = copy(node->left, tree);
         z->left->p = z;
+    }
+    else
+    {
+        z->left = NIL;
     };
     return z;
 };
@@ -89,12 +98,12 @@ void RBTree<T>::left_rotate(RBTreeNode<T> *node)
 {
     RBTreeNode<T> *y = node->right;
     node->right = y->left;
-    if (y->left != y->left->left)
+    if (y->left != NIL)
     {
         y->left->p = node;
     };
     y->p = node->p;
-    if (node->p == node->p->p)
+    if (node->p == NIL)
     {
         root = y;
     }
@@ -115,12 +124,12 @@ void RBTree<T>::right_rotate(RBTreeNode<T> *node)
 {
     RBTreeNode<T> *y = node->left;
     node->left = y->right;
-    if (y->right != y->right->right)
+    if (y->right != NIL)
     {
         y->right->p = node;
     };
     y->p = node->p;
-    if (node->p == node->p->p)
+    if (node->p == NIL)
     {
         root = y;
     }
@@ -191,9 +200,9 @@ void RBTree<T>::insert_fixup(RBTreeNode<T> *z)
 };
 
 template <class T>
-void RBTree<T>::delete_fixup(RBTreeNode<T> *x) 
+void RBTree<T>::delete_fixup(RBTreeNode<T> *x)
 {
-    RBTreeNode<T> * w;
+    RBTreeNode<T> *w;
     while (x != root && x->color == true)
     {
         if (x == x->p->left)
@@ -201,9 +210,9 @@ void RBTree<T>::delete_fixup(RBTreeNode<T> *x)
             w = x->p->right;
             if (w->color == false)
             {
-                w->color == true;
-                x->p->color == false;
-                left_rotate (x->p);
+                w->color = true;
+                x->p->color = false;
+                left_rotate(x->p);
                 w = x->p->right;
             };
             if (w->left->color == true && w->right->color == true)
@@ -215,7 +224,7 @@ void RBTree<T>::delete_fixup(RBTreeNode<T> *x)
             {
                 if (w->right->color == true)
                 {
-                    w->left->color == true;
+                    w->left->color = true;
                     w->color = false;
                     right_rotate(w);
                     w = x->p->right;
@@ -232,9 +241,9 @@ void RBTree<T>::delete_fixup(RBTreeNode<T> *x)
             w = x->p->left;
             if (w->color == false)
             {
-                w->color == true;
-                x->p->color == false;
-                right_rotate (x->p);
+                w->color = true;
+                x->p->color = false;
+                right_rotate(x->p);
                 w = x->p->left;
             };
             if (w->right->color == true && w->left->color == true)
@@ -246,7 +255,7 @@ void RBTree<T>::delete_fixup(RBTreeNode<T> *x)
             {
                 if (w->left->color == true)
                 {
-                    w->right->color == true;
+                    w->right->color = true;
                     w->color = false;
                     left_rotate(w);
                     w = x->p->left;
@@ -260,13 +269,12 @@ void RBTree<T>::delete_fixup(RBTreeNode<T> *x)
         };
         x->color = true;
     }
-    
 };
 
 template <class T>
 void RBTree<T>::transplant(RBTreeNode<T> *oldNode, RBTreeNode<T> *newNode)
 {
-    if (oldNode->p == oldNode->p->p)
+    if (oldNode->p == NIL)
     {
         root = newNode;
     }
@@ -299,7 +307,7 @@ RBTreeNode<T> *RBTree<T>::insert(T value)
     RBTreeNode<T> *z = new RBTreeNode<T>(value);
     RBTreeNode<T> *x = root;
     RBTreeNode<T> *y = NIL;
-    while (x != x->p)
+    while (x != NIL)
     {
         y = x;
         if (z->key < x->key)
@@ -312,7 +320,7 @@ RBTreeNode<T> *RBTree<T>::insert(T value)
         };
     }
     z->p = y;
-    if (y == y->p)
+    if (y == NIL)
     {
         root = z;
     }
@@ -328,6 +336,8 @@ RBTreeNode<T> *RBTree<T>::insert(T value)
     z->right = NIL;
     z->color = false;
     insert_fixup(z);
+    rbt_size ++;
+    return z;
 };
 
 template <class T>
@@ -338,16 +348,16 @@ void RBTree<T>::remove(T value)
         throw empty_tree_exception();
     }
 
-    RBTreeNode<T> *z = new RBTreeNode<T>(value);
+    RBTreeNode<T> *z = search(value);
     RBTreeNode<T> *y = z;
-    RBTreeNode<T> *x = z;
+    RBTreeNode<T> *x;
     bool y_original_color = y->color;
-    if (z->left == z->left->left)
+    if (z->left == NIL)
     {
         x = z->right;
         transplant(z, z->right);
     }
-    else if (z->right == z->right->right)
+    else if (z->right == NIL)
     {
         x = z->left;
         transplant(z, z->left);
@@ -376,6 +386,7 @@ void RBTree<T>::remove(T value)
     {
         delete_fixup(x);
     };
+    rbt_size--;
 };
 
 template <class T>

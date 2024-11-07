@@ -16,7 +16,7 @@ class RBTree
 		long			    rbt_size;	
 
 		void			    deallocate 					( RBTreeNode<T> *node );
-        RBTreeNode<T>*      copy                        ( const RBTreeNode<T> *node );
+        RBTreeNode<T>*      copy                        ( const RBTreeNode<T> *node, const RBTree<T> &tree );
         void                left_rotate                 ( RBTreeNode<T>* node);
         void                right_rotate                ( RBTreeNode<T>* node);
         void                insert_fixup                ( RBTreeNode<T>* z);
