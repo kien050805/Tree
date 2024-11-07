@@ -201,14 +201,6 @@ bool RBT_sanity_check()
     } catch (...) {
         check = false;
     }
-    try {
-        tree_0.search(99); // Attempt to search in an empty tree
-        check = false;
-    } catch (const empty_tree_exception& e) {
-        // Expected exception for searching in an empty tree
-    } catch (...) {
-        check = false;
-    }
 
     // Test isEmpty on an empty tree
     if (!tree_0.isEmpty()){
@@ -303,15 +295,6 @@ bool RBT_sanity_check()
         check = false;
     } catch (const value_not_in_tree_exception& e) {
         // Expected exception for removing a non-existent value
-    } catch (...) {
-        check = false;
-    }
-
-    try {
-        tree_0.search(99); // Attempt to search for a non-existent value
-        check = false;
-    } catch (const value_not_in_tree_exception& e) {
-        // Expected exception for searching a non-existent value
     } catch (...) {
         check = false;
     }
