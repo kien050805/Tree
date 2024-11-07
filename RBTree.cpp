@@ -35,6 +35,7 @@ Return: None
 template <class T>
 RBTree<T>::RBTree(const RBTree<T> &tree)
 {
+    NIL = new RBTreeNode<T>();
     root = copy(tree.root, tree);
     rbt_size = tree.rbt_size;
 };
@@ -67,6 +68,12 @@ RBTree<T> RBTree<T>::operator=(const RBTree<T> &tree)
     return *this;
 };
 
+/*===========================================================================
+The deallocate helper function
+Recursively delete all nodes that belong to the given parent node (included)
+Parameters: A node of a red-black tree type T
+Return: None
+===========================================================================*/
 template <class T>
 void RBTree<T>::deallocate(RBTreeNode<T> *node)
 {
@@ -85,6 +92,13 @@ void RBTree<T>::deallocate(RBTreeNode<T> *node)
     delete node;
 };
 
+/*===========================================================================
+The copy helper function
+Copy a (sub) red-black tree from a given parent node to a new binary 
+search tree both with type T
+Parameters: A node of a binary search tree type T
+Return: A copied binary search tree type T
+===========================================================================*/
 template <class T>
 RBTreeNode<T> *RBTree<T>::copy(const RBTreeNode<T> *node, const RBTree<T> &tree)
 {
