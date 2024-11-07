@@ -22,9 +22,10 @@ functioning correctly.
 Parameters: None
 Return: boolean value depending on if the function pass the test cases
 ===========================================================================*/
-bool BST_sanity_check()
+int BST_sanity_check()
 {
-    bool check = true;
+    int check = 0;
+
     // Create BSTs
     BST<int> tree_0;
     BST<string> tree_1;
@@ -35,16 +36,16 @@ bool BST_sanity_check()
     // Test exception handling for empty tree
     try {
         tree_0.remove(99); // Attempt to remove a value from an empty tree
-        check = false;
+        check += 1;
     } catch (const empty_tree_exception& e) {
         // Expected exception for removing from an empty tree
     } catch (...) {
-        check = false;
+        check += 1;
     }
 
     // Test isEmpty on an empty tree
     if (!tree_0.isEmpty()){
-        check = false;
+        check += 1;
     };
 
     // Test insert int
@@ -55,7 +56,7 @@ bool BST_sanity_check()
     tree_0.insert(-12);
 
     if (tree_0.size() != 5){
-        check = false;
+        check += 1;
     };
 
     // Test insert string
@@ -66,7 +67,7 @@ bool BST_sanity_check()
     tree_1.insert(",");
 
     if (tree_1.size() != 5){
-        check = false;
+        check += 1;
     };
 
     // Test insert double
@@ -77,7 +78,7 @@ bool BST_sanity_check()
     tree_2.insert(1.7);
 
     if (tree_2.size() != 5){
-        check = false;
+        check += 1;
     };
 
     // Test insert same values
@@ -88,55 +89,55 @@ bool BST_sanity_check()
     tree_3.insert(0);
 
     if (tree_3.size() != 5){
-        check = false;
+        check += 1;
     };
 
     // Test isEmpty on a tree with values
     if (tree_0.isEmpty()){
-        check = false;
+        check += 1;
     };
 
     // Test copy constructor
     BST<int> tree_5(tree_0);
     if (tree_5.size() != 5){
-        check = false;
+        check += 1;
     };
     
     // Test = operator overloading
     tree_4 = tree_0;
     if (tree_4.size() != 5){
-        check = false;
+        check += 1;
     };
 
     // Test remove
     tree_3.remove(0);
     if (tree_3.size() != 4){
-        check = false;
+        check += 1;
     };
 
     // Test search
     if (tree_0.search(10)->value() != 10){
-        check = false;
+        check += 1;
     };
 
     // Test treeMin
     if (tree_0.treeMin()->value() != -12){
-        check = false;
+        check += 1;
     }
 
     // Test treeMax
     if (tree_0.treeMax()->value() != 15){
-        check = false;
+        check += 1;
     }
 
     // Test exception handling for value not in tree
     try {
         tree_0.remove(99); // Attempt to remove a non-existent value
-        check = false;
+        check += 1;
     } catch (const value_not_in_tree_exception& e) {
         // Expected exception for removing a non-existent value
     } catch (...) {
-        check = false;
+        check += 1;
     }
 
     // Capture output using ostringstream
@@ -159,17 +160,17 @@ bool BST_sanity_check()
     // Test printPreOrderTraversal
     string captured_preorder = ossPreOrder.str();
     if (captured_preorder != "10 -5 -12 7 15 "){
-        check = false;
+        check += 1;
     };
     // Test printInOrderTraversal
     string captured_inorder = ossInOrder.str();
     if (captured_inorder != "-12 -5 7 10 15 "){
-        check = false;
+        check += 1;
     };
     // Test printPostOrderTraversal
     string captured_postorder = ossPostOrder.str();
     if (captured_postorder != "-12 7 -5 15 10 "){
-        check = false;
+        check += 1;
     };
     
     return check;
@@ -182,9 +183,9 @@ functioning correctly.
 Parameters: None
 Return: boolean value depending on if the function pass the test cases
 ===========================================================================*/
-bool RBT_sanity_check()
+int RBT_sanity_check()
 {
-    bool check = true;
+    int check = 0;
     // Create RBTrees
     RBTree<int> tree_0;
     RBTree<string> tree_1;
@@ -195,16 +196,16 @@ bool RBT_sanity_check()
     // Test exception handling for empty tree
     try {
         tree_0.remove(99); // Attempt to remove a value from an empty tree
-        check = false;
+        check += 1;
     } catch (const empty_tree_exception& e) {
         // Expected exception for removing from an empty tree
     } catch (...) {
-        check = false;
+        check += 1;
     }
 
     // Test isEmpty on an empty tree
     if (!tree_0.isEmpty()){
-        check = false;
+        check += 1;
     };
 
     // Test insert int
@@ -215,7 +216,7 @@ bool RBT_sanity_check()
     tree_0.insert(-12);
 
     if (tree_0.size() != 5){
-        check = false;
+        check += 1;
     };
 
     // Test insert string
@@ -226,7 +227,7 @@ bool RBT_sanity_check()
     tree_1.insert(",");
 
     if (tree_1.size() != 5){
-        check = false;
+        check += 1;
     };
 
     // Test insert double
@@ -237,7 +238,7 @@ bool RBT_sanity_check()
     tree_2.insert(1.7);
 
     if (tree_2.size() != 5){
-        check = false;
+        check += 1;
     };
 
     // Test insert same values
@@ -248,55 +249,55 @@ bool RBT_sanity_check()
     tree_3.insert(0);
 
     if (tree_3.size() != 5){
-        check = false;
+        check += 1;
     };
 
     // Test isEmpty on a tree with values
     if (tree_0.isEmpty()){
-        check = false;
+        check += 1;
     };
 
     // Test copy constructor
     RBTree<int> tree_5(tree_0);
     if (tree_5.size() != 5){
-        check = false;
+        check += 1;
     };
     
     // Test = operator overloading
     tree_4 = tree_0;
     if (tree_4.size() != 5){
-        check = false;
+        check += 1;
     };
 
     // Test remove
     tree_3.remove(0);
     if (tree_3.size() != 4){
-        check = false;
+        check += 1;
     };
 
     // Test search
     if (tree_0.search(10)->value() != 10){
-        check = false;
+        check += 1;
     };
 
     // Test treeMin
     if (tree_0.treeMin()->value() != -12){
-        check = false;
+        check += 1;
     }
 
     // Test treeMax
     if (tree_0.treeMax()->value() != 15){
-        check = false;
+        check += 1;
     }
 
     // Test exception handling for value not in tree
     try {
         tree_0.remove(99); // Attempt to remove a non-existent value
-        check = false;
+        check += 1;
     } catch (const value_not_in_tree_exception& e) {
         // Expected exception for removing a non-existent value
     } catch (...) {
-        check = false;
+        check += 1;
     }
 
     // Capture output using ostringstream
@@ -319,17 +320,17 @@ bool RBT_sanity_check()
     // Test printPreOrderTraversal
     string captured_preorder = ossPreOrder.str();
     if (captured_preorder != "10 -5 -12 7 15 "){
-        check = false;
+        check += 1;
     };
     // Test printInOrderTraversal
     string captured_inorder = ossInOrder.str();
     if (captured_inorder != "-12 -5 7 10 15 "){
-        check = false;
+        check += 1;
     };
     // Test printPostOrderTraversal
     string captured_postorder = ossPostOrder.str();
     if (captured_postorder != "-12 7 -5 15 10 "){
-        check = false;
+        check += 1;
     };
     
     return check;
@@ -338,17 +339,19 @@ bool RBT_sanity_check()
 
 int main()
 {
-    BST<int> myBST;
-    cout << myBST.size() << endl;
-    for (int i = 0; i < 10; i++)
-    {
-        myBST.insert(i);
-    };
-    cout << myBST.size() << endl;
-    myBST.printInOrderTraversal();
-    cout << endl;
+    cout << "Testing BST class:" << endl;
+    if (BST_sanity_check() != 0) {
+        cout << BST_sanity_check() << "test cases failed." << endl;
+    } else {
+        cout << "All test cases passed (" << BST_sanity_check() << " cases)."<< endl;
+    }
 
-    cout << BST_sanity_check() << endl;
-    cout << RBT_sanity_check() << endl;
+    cout << "Testing RBTree class:" << endl;
+    if (RBT_sanity_check() != 0) {
+        cout << RBT_sanity_check() << "test cases failed." << endl;
+    } else {
+        cout << "All test cases passed (" << RBT_sanity_check() << " cases)."<< endl;
+    }
+
     return 0;
 };
