@@ -1,3 +1,10 @@
+/*===========================================================================
+Kien Le, Nguyen Nguyen, Bach Nguyen
+7 November 2024
+mytests.cpp
+This file contains the sanity checks for both types of trees
+===========================================================================*/
+
 #include <iostream>
 #include <sstream>
 #include <string>
