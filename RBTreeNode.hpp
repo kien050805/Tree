@@ -27,9 +27,8 @@ class RBTreeNode
         RBTreeNode<T> *right;
 
     public:
-
-
                         RBTreeNode                  (T item);
+                        RBTreeNode                  ();
                         RBTreeNode                  (const RBTreeNode<T> &node);
                         ~RBTreeNode                 (void);
         RBTreeNode<T>*  operator=	                (const RBTreeNode<T> &node);

@@ -3,6 +3,15 @@
 
 using namespace std;
 
+template<class T>
+RBTreeNode<T>::RBTreeNode()
+{
+    color = true;
+    p = this;
+    left = this;
+    right = this;
+};
+
 template <class T>
 RBTreeNode<T>::RBTreeNode(T item)
 {
@@ -39,7 +48,7 @@ RBTreeNode<T> *RBTreeNode<T>::operator=(const RBTreeNode<T> &node)
 template <class T>
 RBTreeNode<T> *RBTreeNode<T>::treeMin()
 {
-    if (left == nullptr)
+    if (left == left->left)
     {
         return this;
     }
@@ -52,7 +61,7 @@ RBTreeNode<T> *RBTreeNode<T>::treeMin()
 template <class T>
 RBTreeNode<T> *RBTreeNode<T>::treeMax()
 {
-    if (right == nullptr)
+    if (right == right->right)
     {
         return this;
     }
@@ -66,11 +75,11 @@ template <class T>
 void RBTreeNode<T>::printPreOrderTraversal() const
 {
     cout << key << " ";
-    if (left != nullptr)
+    if (left != right->right)
     {
         left->printPreOrderTraversal();
     };
-    if (right != nullptr)
+    if (right != right->right)
     {
         right->printPreOrderTraversal();
     };
@@ -79,12 +88,12 @@ void RBTreeNode<T>::printPreOrderTraversal() const
 template <class T>
 void RBTreeNode<T>::printInOrderTraversal() const
 {
-    if (left != nullptr)
+    if (left != left -> left)
     {
         left->printInOrderTraversal();
     };
     cout << key << " ";
-    if (right != nullptr)
+    if (right != right -> right)
     {
         right->printInOrderTraversal();
     };
@@ -93,11 +102,11 @@ void RBTreeNode<T>::printInOrderTraversal() const
 template <class T>
 void RBTreeNode<T>::printPostOrderTraversal() const
 {
-    if (left != nullptr)
+    if (left == left->left)
     {
         left->printPostOrderTraversal();
     };
-    if (right != nullptr)
+    if (right != right->right)
     {
         right->printPostOrderTraversal();
     };

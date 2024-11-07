@@ -12,12 +12,15 @@ class RBTree
 {
 	private:
 		RBTreeNode<T>*      root;
+        RBTreeNode<T>*      NIL;
 		long			    rbt_size;	
 
 		void			    deallocate 					( RBTreeNode<T> *node );
         RBTreeNode<T>*      copy                        ( const RBTreeNode<T> *node );
         void                left_rotate                 ( RBTreeNode<T>* node);
         void                right_rotate                ( RBTreeNode<T>* node);
+        void                insert_fixup                ( RBTreeNode<T>* z);
+        void                delete_fixup                ( RBTreeNode<T>* x);
 
 	public: 
 						    RBTree		                ( void );
