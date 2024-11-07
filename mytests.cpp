@@ -23,6 +23,23 @@ bool BST_sanity_check()
     BST<int> tree_3;
     BST<int> tree_4;
 
+    // Test exception handling for empty tree
+    try {
+        tree_0.remove(99); // Attempt to remove a value from an empty tree
+        check = false;
+    } catch (const empty_tree_exception& e) {
+        // Expected exception for removing from an empty tree
+    } catch (...) {
+        check = false;
+    }
+    try {
+        (tree_0.search(99)).value(); // Attempt to search in an empty tree
+        check = false;
+    } catch (const empty_tree_exception& e) {
+        // Expected exception for searching in an empty tree
+    } catch (...) {
+        check = false;
+    }
 
     // Test isEmpty on an empty tree
     if (!tree_0.isEmpty()){
@@ -96,6 +113,24 @@ bool BST_sanity_check()
         check = false;
     };
 
+    // Test exception handling for value not in tree
+    try {
+        tree_0.remove(99); // Attempt to remove a non-existent value
+        check = false;
+    } catch (const value_not_in_tree_exception& e) {
+        // Expected exception for removing a non-existent value
+    } catch (...) {
+        check = false;
+    }
+
+    try {
+        tree_0.search(99); // Attempt to search for a non-existent value
+        check = false;
+    } catch (const value_not_in_tree_exception& e) {
+        // Expected exception for searching a non-existent value
+    } catch (...) {
+        check = false;
+    }
 
     // Capture output using ostringstream
     ostringstream ossPreOrder, ossInOrder, ossPostOrder;
@@ -129,6 +164,7 @@ bool BST_sanity_check()
     if (captured_postorder != "-12 7 -5 15 10 "){
         check = false;
     };
+
 
     return check;
 };

@@ -41,6 +41,8 @@ class BST
         void        	printInOrderTraversal       () const;
         void        	printPostOrderTraversal     () const;
 
+        T               value                       () const;
+
 };
 
 
