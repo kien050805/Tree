@@ -256,6 +256,11 @@ Return: The pointer of the value in the tree
 template <class T>
 BSTNode<T> *BST<T>::search(T value) const
 {
+    if (isEmpty())
+    {
+        throw empty_tree_exception();
+    }
+
     BSTNode<T> *x = root;
     while (x != nullptr && value != x->key)
     {
@@ -266,6 +271,12 @@ BSTNode<T> *BST<T>::search(T value) const
         else
             x = x->right;
     }
+
+    if (x == nullptr || value == x->key)
+    {
+        throw value_not_in_tree_exception();
+    }
+
     return x;
 };
 
