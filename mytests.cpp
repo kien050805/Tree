@@ -373,12 +373,16 @@ bool RBT_sanity_check()
 int main()
 {
     BST<int> myBST;
-    cout << myBST.size();
+    cout << myBST.size() << endl;
     for (int i = 0; i < 10; i++)
     {
         myBST.insert(i);
     };
-    cout << myBST.size();
+    cout << myBST.size() << endl;
     myBST.printInOrderTraversal();
+    cout << endl;
+
+    cout << BST_sanity_check() << endl;
+    cout << RBT_sanity_check() << endl;
     return 0;
 };
