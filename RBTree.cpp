@@ -94,10 +94,10 @@ void RBTree<T>::deallocate(RBTreeNode<T> *node)
 
 /*===========================================================================
 The copy helper function
-Copy a (sub) red-black tree from a given parent node to a new binary 
-search tree both with type T
-Parameters: A node of a binary search tree type T
-Return: A copied binary search tree type T
+Copy a (sub) red-black tree from a given parent node to a new red-black
+tree both with type T
+Parameters: A node of a red-black tree type T
+Return: A copied red-black tree type T
 ===========================================================================*/
 template <class T>
 RBTreeNode<T> *RBTree<T>::copy(const RBTreeNode<T> *node, const RBTree<T> &tree)
@@ -126,6 +126,12 @@ RBTreeNode<T> *RBTree<T>::copy(const RBTreeNode<T> *node, const RBTree<T> &tree)
     return z;
 };
 
+/*===========================================================================
+left_rotate function
+Performs a left rotation on the node
+Parameters: A node of a red-black tree type T
+Return: None
+===========================================================================*/
 template <class T>
 void RBTree<T>::left_rotate(RBTreeNode<T> *node)
 {
@@ -152,6 +158,12 @@ void RBTree<T>::left_rotate(RBTreeNode<T> *node)
     node->p = y;
 };
 
+/*===========================================================================
+right_rotate function
+Performs a right rotation on the node
+Parameters: A node of a red-black tree type T
+Return: None
+===========================================================================*/
 template <class T>
 void RBTree<T>::right_rotate(RBTreeNode<T> *node)
 {
@@ -304,6 +316,12 @@ void RBTree<T>::delete_fixup(RBTreeNode<T> *x)
     }
 };
 
+/*===========================================================================
+transplant function
+Replaces one subtree as a child of its parent with another subtree
+Parameters: Pointer to current subtree, pointer to new subtree
+Return: None
+===========================================================================*/
 template <class T>
 void RBTree<T>::transplant(RBTreeNode<T> *oldNode, RBTreeNode<T> *newNode)
 {
@@ -322,18 +340,36 @@ void RBTree<T>::transplant(RBTreeNode<T> *oldNode, RBTreeNode<T> *newNode)
     newNode->p = oldNode->p;
 };
 
+/*===========================================================================
+isEmpty function
+Check if the tree is empty or not
+Parameters: None
+Return: True if the tree is empty, false if isn't
+===========================================================================*/
 template <class T>
 bool RBTree<T>::isEmpty() const
 {
     return (rbt_size == 0);
 };
 
+/*===========================================================================
+size function
+Returns the size of the tree
+Parameters: None
+Return: The size of the tree
+===========================================================================*/
 template <class T>
 long RBTree<T>::size() const
 {
     return rbt_size;
 };
 
+/*===========================================================================
+insert function
+Check if the tree is empty or not
+Parameters: None
+Return: True if the tree is empty, false if isn't
+===========================================================================*/
 template <class T>
 RBTreeNode<T> *RBTree<T>::insert(T value)
 {
@@ -373,6 +409,12 @@ RBTreeNode<T> *RBTree<T>::insert(T value)
     return z;
 };
 
+/*===========================================================================
+remove function
+Removes a node with value value from the tree.
+Parameters: The value to be removed
+Return: None
+===========================================================================*/
 template <class T>
 void RBTree<T>::remove(T value)
 {
@@ -451,6 +493,12 @@ RBTreeNode<T> *RBTree<T>::search(T value) const
     return x;
 };
 
+/*===========================================================================
+treeMin function
+Find the pointer of the smallest value of the red-black tree
+Parameters: None
+Return: The pointer of the smallest value of the red-black tree
+===========================================================================*/
 template <class T>
 RBTreeNode<T> *RBTree<T>::treeMin() const
 {
@@ -464,6 +512,12 @@ RBTreeNode<T> *RBTree<T>::treeMin() const
     }
 };
 
+/*===========================================================================
+treeMax function
+Find the pointer of the largest value of the red-black tree
+Parameters: None
+Return: The pointer of largest value of the red tree
+===========================================================================*/
 template <class T>
 RBTreeNode<T> *RBTree<T>::treeMax() const
 {
@@ -477,18 +531,36 @@ RBTreeNode<T> *RBTree<T>::treeMax() const
     }
 };
 
+/*===========================================================================
+printPreOrderTraversal function
+Prints the tree in pre-order traversal
+Parameters: None
+Return: None
+===========================================================================*/
 template <class T>
 void RBTree<T>::printPreOrderTraversal() const
 {
     root->printPreOrderTraversal();
 };
 
+/*===========================================================================
+printInOrderTraversal function
+Prints the tree in in-order traversal
+Parameters: None
+Return: None
+===========================================================================*/
 template <class T>
 void RBTree<T>::printInOrderTraversal() const
 {
     root->printInOrderTraversal();
 };
 
+/*===========================================================================
+printPostOrderTraversal function
+Prints the tree in post-order traversal
+Parameters: None
+Return: None
+===========================================================================*/
 template <class T>
 void RBTree<T>::printPostOrderTraversal() const
 {

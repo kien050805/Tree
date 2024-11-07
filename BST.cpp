@@ -156,9 +156,9 @@ bool BST<T>::isEmpty() const
 
 /*===========================================================================
 size function
-Returns the size of the binary search tree
+Returns the size of the tree
 Parameters: None
-Return: The size of the binary search tree
+Return: The size of the tree
 ===========================================================================*/
 template <class T>
 long BST<T>::size() const
@@ -168,10 +168,9 @@ long BST<T>::size() const
 
 /*===========================================================================
 insert function
-Inserts a node with value value into the tree and returns
-a pointer to the inserted node.
-Parameters: The value to be inserted
-Return: The pointer to the inserted node
+Check if the tree is empty or not
+Parameters: None
+Return: True if the tree is empty, false if isn't
 ===========================================================================*/
 template <class T>
 BSTNode<T> *BST<T>::insert(T value)
