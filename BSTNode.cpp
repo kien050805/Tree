@@ -63,6 +63,7 @@ BSTNode<T> *BSTNode<T>::operator=(const BSTNode<T> &node)
     left = node.left;
     right = node.r;
     p = node.p;
+    return *this;
 };
 
 /*===========================================================================

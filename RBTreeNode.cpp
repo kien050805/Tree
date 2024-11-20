@@ -81,6 +81,7 @@ RBTreeNode<T> *RBTreeNode<T>::operator=(const RBTreeNode<T> &node)
     p = node.p;
     left = node.left;
     right = node.right;
+    return *this;
 };
 
 /*===========================================================================
