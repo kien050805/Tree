@@ -11,7 +11,6 @@ using namespace std;
 #ifndef RBTREE_HPP
 #define RBTREE_HPP
 
-#include "HashMapTree.hpp"
 #include "RBTreeNode.hpp"
 #include <utility>
 #include "customexceptions.hpp"
