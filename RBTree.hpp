@@ -1,54 +1,61 @@
-/*===========================================================================
-Kien Le, Nguyen Nguyen, Bach Nguyen
-7 November 2024
-RBTree.hpp
-This file contains the definitions of the red-black tree functions.
-===========================================================================*/
-
+//=========================================================
+// RBTree.hpp
+// Authors : Kien, Trinity, James
+// 11/24/2024
+//
+// This is the header file with definitions of functions for the RBTree class
+//=========================================================
 #include <iostream>
-
 using namespace std;
 
 #ifndef RBTREE_HPP
 #define RBTREE_HPP
 
+#include "HashMapTree.hpp"
 #include "RBTreeNode.hpp"
+#include <utility>
+#include "customexceptions.hpp"
 
-template <class T> 
+template <class T>
 class RBTree
 {
-	private:
-		RBTreeNode<T>*      root;
-        RBTreeNode<T>*      NIL;
-		long			    rbt_size;	
+private:
+    RBTreeNode<T> *root;
+    RBTreeNode<T> *NIL = new RBTreeNode<T>();
+    long rbt_size;
 
-		void			    deallocate 					( RBTreeNode<T> *node );
-        RBTreeNode<T>*      copy                        ( const RBTreeNode<T> *node, const RBTree<T> &tree );
-        void                left_rotate                 ( RBTreeNode<T>* node);
-        void                right_rotate                ( RBTreeNode<T>* node);
-        void                insert_fixup                ( RBTreeNode<T>* z);
-        void                delete_fixup                ( RBTreeNode<T>* x);
+    bool is_balanced_helper(RBTreeNode<T> *node, int currentBlackHeight, int &expectedBlackHeight) const;
 
-	public: 
-						    RBTree		                ( void );
-						    RBTree		                ( const RBTree<T> &tree );
-						    ~RBTree		                ( void );
-		RBTree<T>			operator=	                ( const RBTree<T> &tree );
+    void transplant(RBTreeNode<T> *oldNode, RBTreeNode<T> *newNode);
+    void insert_fixup(RBTreeNode<T> *z);
+    void delete_fixup(RBTreeNode<T> *node);
+    void left_rotate(RBTreeNode<T> *node);
+    void right_rotate(RBTreeNode<T> *node);
+    void NIL_fixup();
 
-        void                transplant                  (RBTreeNode<T> *oldNode, RBTreeNode<T> *newNode);
-        bool                isEmpty                     () const;
-        long                size                        () const;
-        RBTreeNode<T>*      insert                      (T value);
-        void        	    remove                      (T value);
-        RBTreeNode<T>* 	    search                      (T value) const;
-        RBTreeNode<T>* 	    treeMin                     () const;
-        RBTreeNode<T>* 	    treeMax                     () const;
-        void        	    printPreOrderTraversal      () const;
-        void        	    printInOrderTraversal       () const;
-        void        	    printPostOrderTraversal     () const;
-        
-        friend class RBTreeNode<T>;
+    RBTreeNode<T> *copy(const RBTreeNode<T> *node, const RBTree<T> &tree);
+    void deallocate(RBTreeNode<T> *node);
+
+public:
+    RBTree();
+    RBTree(const RBTree<T> &tree);
+    ~RBTree();
+    RBTree<T> &operator=(const RBTree<T> &tree);
+
+    bool isEmpty() const;
+    long size() const;
+    RBTreeNode<T> *search(const T &value);
+    RBTreeNode<T> *treeMin() const;
+    RBTreeNode<T> *treeMax() const;
+
+    bool is_balanced() const;
+
+    void printPreOrderTraversal() const;
+    void printInOrderTraversal() const;
+    void printPostOrderTraversal() const;
+
+    RBTreeNode<T> *insert(T value);
+    void remove(T value);
 };
-
 
 #endif
